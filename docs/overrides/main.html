@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  <script>
+    (function () {
+      try {
+        var theme = window.localStorage && window.localStorage.getItem("retroTheme");
+        /* Migrate old storage format */
+        if (!theme && window.localStorage && window.localStorage.getItem("retroA11yActive") === "true") {
+          var oldBg = window.localStorage.getItem("retroA11yBg") || "#ffedbd";
+          theme = oldBg === "#caf9fc" ? "cool" : "warm";
+          window.localStorage.setItem("retroTheme", theme);
+          window.localStorage.removeItem("retroA11yActive");
+          window.localStorage.removeItem("retroA11yBg");
+        }
+        if (theme === "warm") {
+          document.documentElement.classList.add("retro-a11y-active");
+          document.documentElement.setAttribute("data-a11y-bg", "#ffedbd");
+          document.documentElement.style.setProperty("--retro-a11y-bg", "#ffedbd");
+        } else if (theme === "cool") {
+          document.documentElement.classList.add("retro-a11y-active");
+          document.documentElement.setAttribute("data-a11y-bg", "#caf9fc");
+          document.documentElement.style.setProperty("--retro-a11y-bg", "#caf9fc");
+        }
+        if (window.sessionStorage && window.sessionStorage.getItem("retroNavbarHidden") === "true") {
+          document.documentElement.classList.add("retro-navbar-hidden");
+        }
+      } catch (error) {
+        /* ignore storage issues */
+      }
+    })();
+  </script>
+{% endblock %}

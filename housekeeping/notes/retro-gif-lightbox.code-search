@@ -1,0 +1,244 @@
+# Query: retro-gif-lightbox
+# ContextLines: 1
+
+80 results - 4 files
+
+docs\accessing-your-mentees.md:
+   15  
+   16:     .retro-gif-lightbox {
+   17        position: fixed;
+
+   27  
+   28:     .retro-gif-lightbox.is-open {
+   29        display: flex;
+
+   31  
+   32:     .retro-gif-lightbox__inner {
+   33        width: min(96vw, 1400px);
+
+   49  
+   50:     .retro-gif-lightbox__inner::before {
+   51        content: "";
+
+   65  
+   66:     .retro-gif-lightbox__media {
+   67        position: relative;
+
+   78  
+   79:     .retro-gif-lightbox__hint {
+   80        position: relative;
+
+   92  
+   93:     .retro-gif-lightbox__close {
+   94        position: absolute;
+
+  110  
+  111:     .retro-gif-lightbox__close:hover,
+  112:     .retro-gif-lightbox__close:focus-visible {
+  113        outline: none;
+
+  306    <div
+  307:     class="retro-gif-lightbox"
+  308:     id="retro-gif-lightbox"
+  309      aria-hidden="true"
+  310    >
+  311:     <div class="retro-gif-lightbox__inner">
+  312        <button
+  313          type="button"
+  314:         class="retro-gif-lightbox__close"
+  315:         id="retro-gif-lightbox-close"
+  316          aria-label="Close enlarged GIF"
+
+  323          alt=""
+  324:         class="retro-gif-lightbox__media"
+  325:         id="retro-gif-lightbox-media"
+  326        >
+  327  
+  328:       <p class="retro-gif-lightbox__hint">Press Escape to minimise GIF</p>
+  329      </div>
+
+  346      (function () {
+  347:       const lightbox = document.getElementById('retro-gif-lightbox');
+  348:       const lightboxMedia = document.getElementById('retro-gif-lightbox-media');
+  349:       const lightboxClose = document.getElementById('retro-gif-lightbox-close');
+  350        const lightboxTriggers = document.querySelectorAll('img[data-lightbox]');
+
+docs\accessing-your-sessions.md:
+   15  
+   16:     .retro-gif-lightbox {
+   17        position: fixed;
+
+   27  
+   28:     .retro-gif-lightbox.is-open {
+   29        display: flex;
+
+   31  
+   32:     .retro-gif-lightbox__inner {
+   33        width: min(96vw, 1400px);
+
+   49  
+   50:     .retro-gif-lightbox__inner::before {
+   51        content: "";
+
+   65  
+   66:     .retro-gif-lightbox__media {
+   67        position: relative;
+
+   78  
+   79:     .retro-gif-lightbox__hint {
+   80        position: relative;
+
+   92  
+   93:     .retro-gif-lightbox__close {
+   94        position: absolute;
+
+  110  
+  111:     .retro-gif-lightbox__close:hover,
+  112:     .retro-gif-lightbox__close:focus-visible {
+  113        outline: none;
+
+  302    <div
+  303:     class="retro-gif-lightbox"
+  304:     id="retro-gif-lightbox"
+  305      aria-hidden="true"
+  306    >
+  307:     <div class="retro-gif-lightbox__inner">
+  308        <button
+  309          type="button"
+  310:         class="retro-gif-lightbox__close"
+  311:         id="retro-gif-lightbox-close"
+  312          aria-label="Close enlarged GIF"
+
+  319          alt=""
+  320:         class="retro-gif-lightbox__media"
+  321:         id="retro-gif-lightbox-media"
+  322        >
+  323  
+  324:       <p class="retro-gif-lightbox__hint">Press Escape to minimise GIF</p>
+  325      </div>
+
+  342      (function () {
+  343:       const lightbox = document.getElementById('retro-gif-lightbox');
+  344:       const lightboxMedia = document.getElementById('retro-gif-lightbox-media');
+  345:       const lightboxClose = document.getElementById('retro-gif-lightbox-close');
+  346        const lightboxTriggers = document.querySelectorAll('img[data-lightbox]');
+
+docs\recording-an-absence-illness-and-holiday.md:
+   15  
+   16:     .retro-gif-lightbox {
+   17        position: fixed;
+
+   27  
+   28:     .retro-gif-lightbox.is-open {
+   29        display: flex;
+
+   31  
+   32:     .retro-gif-lightbox__inner {
+   33        width: min(96vw, 1400px);
+
+   49  
+   50:     .retro-gif-lightbox__inner::before {
+   51        content: "";
+
+   65  
+   66:     .retro-gif-lightbox__media {
+   67        position: relative;
+
+   78  
+   79:     .retro-gif-lightbox__hint {
+   80        position: relative;
+
+   92  
+   93:     .retro-gif-lightbox__close {
+   94        position: absolute;
+
+  110  
+  111:     .retro-gif-lightbox__close:hover,
+  112:     .retro-gif-lightbox__close:focus-visible {
+  113        outline: none;
+
+  257    <div
+  258:     class="retro-gif-lightbox"
+  259:     id="retro-gif-lightbox"
+  260      aria-hidden="true"
+  261    >
+  262:     <div class="retro-gif-lightbox__inner">
+  263        <button
+  264          type="button"
+  265:         class="retro-gif-lightbox__close"
+  266:         id="retro-gif-lightbox-close"
+  267          aria-label="Close enlarged GIF"
+
+  274          alt=""
+  275:         class="retro-gif-lightbox__media"
+  276:         id="retro-gif-lightbox-media"
+  277        >
+  278  
+  279:       <p class="retro-gif-lightbox__hint">Press Escape to minimise GIF</p>
+  280      </div>
+
+  297      (function () {
+  298:       const lightbox = document.getElementById('retro-gif-lightbox');
+  299:       const lightboxMedia = document.getElementById('retro-gif-lightbox-media');
+  300:       const lightboxClose = document.getElementById('retro-gif-lightbox-close');
+  301        const lightboxTriggers = document.querySelectorAll('img[data-lightbox]');
+
+docs\wrap-up-a-session.md:
+   15  
+   16:     .retro-gif-lightbox {
+   17        position: fixed;
+
+   27  
+   28:     .retro-gif-lightbox.is-open {
+   29        display: flex;
+
+   31  
+   32:     .retro-gif-lightbox__inner {
+   33        width: min(96vw, 1400px);
+
+   49  
+   50:     .retro-gif-lightbox__inner::before {
+   51        content: "";
+
+   65  
+   66:     .retro-gif-lightbox__media {
+   67        position: relative;
+
+   78  
+   79:     .retro-gif-lightbox__hint {
+   80        position: relative;
+
+   92  
+   93:     .retro-gif-lightbox__close {
+   94        position: absolute;
+
+  110  
+  111:     .retro-gif-lightbox__close:hover,
+  112:     .retro-gif-lightbox__close:focus-visible {
+  113        outline: none;
+
+  379    <div
+  380:     class="retro-gif-lightbox"
+  381:     id="retro-gif-lightbox"
+  382      aria-hidden="true"
+  383    >
+  384:     <div class="retro-gif-lightbox__inner">
+  385        <button
+  386          type="button"
+  387:         class="retro-gif-lightbox__close"
+  388:         id="retro-gif-lightbox-close"
+  389          aria-label="Close enlarged GIF"
+
+  396          alt=""
+  397:         class="retro-gif-lightbox__media"
+  398:         id="retro-gif-lightbox-media"
+  399        >
+  400  
+  401:       <p class="retro-gif-lightbox__hint">Press Escape to minimise GIF</p>
+  402      </div>
+
+  419      (function () {
+  420:       const lightbox = document.getElementById('retro-gif-lightbox');
+  421:       const lightboxMedia = document.getElementById('retro-gif-lightbox-media');
+  422:       const lightboxClose = document.getElementById('retro-gif-lightbox-close');
+  423        const lightboxTriggers = document.querySelectorAll('img[data-lightbox]');
