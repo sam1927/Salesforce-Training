@@ -121,15 +121,21 @@ html {
   animation: retroPageEnter 0.35s ease-out both;
 }
 
-/* Subtle page entrance fade */
+/* Page entrance — complements the exit fade with a subtle "screen wake" feel */
 @keyframes retroPageEnter {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(4px);
+    filter: brightness(1.08);
   }
-  to {
+  60% {
+    opacity: 1;
+    filter: brightness(1.03);
+  }
+  100% {
     opacity: 1;
     transform: translateY(0);
+    filter: brightness(1);
   }
 }
 
@@ -361,7 +367,39 @@ html {
    ========================================================= */
 
 #retro-homepage .retro-boot-screen {
-  min-height: 260px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 1.5rem 1.5rem;
+  box-sizing: border-box;
+}
+
+#retro-homepage .retro-skip-intro {
+  margin-top: auto;
+  align-self: center;
+  padding: 0.35rem 1.2rem !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  cursor: pointer;
+  border-color: var(--retro-border-soft);
+  background: transparent;
+  color: var(--retro-text) !important;
+  transition: opacity 0.4s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  animation: skipIntroFadeIn 0.6s 1.2s ease forwards;
+}
+
+@keyframes skipIntroFadeIn {
+  to { opacity: 0.55; }
+}
+
+#retro-homepage .retro-skip-intro:hover,
+#retro-homepage .retro-skip-intro:focus {
+  opacity: 1;
+  border-color: var(--retro-accent);
+  color: var(--retro-accent-soft) !important;
+  background: var(--retro-accent-tint);
+  box-shadow: 0 0 8px var(--retro-accent-glow-soft);
 }
 
 #retro-homepage #boot-text {
@@ -375,6 +413,44 @@ html {
 
 #retro-homepage .retro-main-content {
   animation: retroMainReveal 0.45s ease-out;
+}
+
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
+
+#retro-homepage .retro-hero {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 0 1rem;
+  text-align: center;
+}
+
+#retro-homepage .retro-hero h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#retro-homepage .retro-hero__body {
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+#retro-homepage .retro-hero__body p {
+  margin-bottom: 0.9rem;
+}
+
+#retro-homepage .retro-hero__body p:last-child {
+  margin-bottom: 0;
+}
+
+#retro-homepage .retro-hero .retro-start-panel {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  padding: 2rem;
+  border-color: var(--retro-accent-border-soft);
+  background: var(--retro-surface-2);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.25);
 }
 
 /* =========================================================
@@ -546,8 +622,10 @@ html {
 }
 
 #retro-homepage .retro-logo-wrap {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
   text-align: center;
+  border-top: 1px solid var(--retro-inner-border);
 }
 
 #retro-homepage .retro-logo-image {
@@ -579,19 +657,19 @@ html {
 }
 
 #retro-homepage .retro-logo-glitch::before {
-  filter: drop-shadow(4px 0 0 rgba(67, 224, 255, 0.42));
+  filter: drop-shadow(6px 0 0 rgba(67, 224, 255, 0.55));
 }
 
 #retro-homepage .retro-logo-glitch::after {
-  filter: drop-shadow(-4px 0 0 rgba(255, 95, 162, 0.38));
+  filter: drop-shadow(-6px 0 0 rgba(255, 95, 162, 0.5));
 }
 
 #retro-homepage .retro-logo-glitch.is-glitching::before {
-  animation: retroLogoGlitchBefore 0.42s steps(2, end) forwards;
+  animation: retroLogoGlitchBefore 1.2s steps(6, end) infinite;
 }
 
 #retro-homepage .retro-logo-glitch.is-glitching::after {
-  animation: retroLogoGlitchAfter 0.42s steps(2, end) forwards;
+  animation: retroLogoGlitchAfter 1.2s steps(6, end) infinite;
 }
 
 /* =========================================================
@@ -1000,6 +1078,48 @@ html.retro-a11y-active #mkdocs-search-results p {
   color: #333333 !important;
 }
 
+/* Lightbox — match active a11y theme */
+html.retro-a11y-active .global-lightbox {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+html.retro-a11y-active .global-lightbox__inner {
+  border: 2px solid rgba(0, 0, 0, 0.3) !important;
+  background: var(--retro-a11y-bg, #ffedbd) !important;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06) !important;
+}
+
+html.retro-a11y-active .global-lightbox__inner::before {
+  display: none !important;
+}
+
+html.retro-a11y-active .global-lightbox__media {
+  border: 2px solid rgba(0, 0, 0, 0.2) !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.retro-a11y-active .global-lightbox__close {
+  background: #222222 !important;
+  color: #f5f5f5 !important;
+  border-color: #222222 !important;
+  box-shadow: none !important;
+}
+
+html.retro-a11y-active .global-lightbox__close:hover,
+html.retro-a11y-active .global-lightbox__close:focus-visible {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.retro-a11y-active .global-lightbox__hint {
+  color: #1a1a1a !important;
+  text-shadow: none !important;
+}
+
 /* =========================================================
    ACCESSIBILITY MODE — TYPOGRAPHY & SPACING SCALE
    Increases font sizes, weights, spacing, and control
@@ -1163,7 +1283,7 @@ html.retro-a11y-active .retro-theme-option--normal {
    that contrast against the near-black background. Use a
    palette-aware accent for each mode. */
 
-html.retro-a11y-active[data-a11y-bg="#ffedbd"] .retro-transition {
+html[data-retro-theme="warm"] .retro-transition {
   --retro-a11y-tr-accent: #dab264;
   --retro-a11y-tr-glow: rgba(218, 178, 100, 0.3);
   --retro-a11y-tr-glow-soft: rgba(218, 178, 100, 0.15);
@@ -1171,7 +1291,7 @@ html.retro-a11y-active[data-a11y-bg="#ffedbd"] .retro-transition {
   --retro-a11y-tr-tint: rgba(218, 178, 100, 0.08);
 }
 
-html.retro-a11y-active[data-a11y-bg="#caf9fc"] .retro-transition {
+html[data-retro-theme="cool"] .retro-transition {
   --retro-a11y-tr-accent: #64d2e1;
   --retro-a11y-tr-glow: rgba(100, 210, 225, 0.3);
   --retro-a11y-tr-glow-soft: rgba(100, 210, 225, 0.15);
@@ -1435,6 +1555,55 @@ html.retro-a11y-active .retro-flip-card__back strong {
   background: rgba(255, 255, 255, 0.06);
 }
 
+/* ---- Nav boot-in staggered reveal ---- */
+@keyframes retroNavBootIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.retro-nav-booting .navbar-nav .nav-link,
+.retro-nav-booting .navbar-nav .dropdown-item {
+  animation: retroNavBootIn 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--nav-i, 0) * 28ms);
+}
+
+.retro-nav-booting .navbar-brand {
+  animation: retroNavBootIn 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ---- Nav power-down staggered exit ---- */
+@keyframes retroNavPowerDown {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+}
+
+.retro-nav-powering-down .navbar-nav .nav-link,
+.retro-nav-powering-down .navbar-nav .dropdown-item {
+  animation: retroNavPowerDown 0.12s cubic-bezier(0.55, 0, 1, 0.45) both;
+  animation-delay: calc(var(--nav-i, 0) * 18ms);
+}
+
+.retro-nav-powering-down .navbar-brand {
+  animation: retroNavPowerDown 0.1s cubic-bezier(0.55, 0, 1, 0.45) both;
+  animation-delay: calc(var(--nav-total, 0) * 18ms);
+}
+
 /* Hide/show for sidebar and bs-sidebar are now handled
    inside the desktop/mobile media queries in the sidebar section below. */
 
@@ -1542,6 +1711,115 @@ html.retro-navbar-hidden .bs-sidebar {
 
 .retro-content-page h2 {
   font-size: 1.85rem;
+}
+
+/* =========================================================
+   TERMINOLOGY PAGE — READABILITY ENHANCEMENTS
+   ========================================================= */
+
+/* Section panels get a bit more internal room */
+.retro-term-section {
+  padding: 24px 22px !important;
+}
+
+/* Intro text below section h2 — subtle separator from entries */
+.retro-term-section-intro {
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--retro-inner-border);
+}
+
+/* Individual term entry cards */
+.retro-term-entry {
+  position: relative;
+  margin-top: 1.1rem;
+  padding: 1rem 1.15rem 1rem 1.15rem;
+  border: 1px solid var(--retro-inner-border);
+  border-left: 3px solid var(--retro-accent-soft);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.retro-term-entry + .retro-term-entry {
+  margin-top: 0.85rem;
+}
+
+/* Term title — make it pop */
+.retro-term-entry h3 {
+  font-size: 1.15rem;
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--retro-inner-border);
+  letter-spacing: 0.1em;
+}
+
+/* Better paragraph spacing inside entries */
+.retro-term-entry p {
+  margin-bottom: 0.7rem;
+}
+
+.retro-term-entry p:last-child,
+.retro-term-entry ul:last-child {
+  margin-bottom: 0;
+}
+
+.retro-term-entry ul {
+  margin-top: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+/* "Important" callout notes */
+.retro-term-note {
+  margin-top: 0.9rem;
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--retro-accent-soft);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.retro-term-note p:first-child {
+  margin-top: 0;
+}
+
+.retro-term-note p:last-child,
+.retro-term-note ul:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Warm / Cool theme overrides --- */
+html.retro-a11y-active .retro-term-entry {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(0, 0, 0, 0.1);
+  border-left-color: rgba(0, 0, 0, 0.35);
+}
+
+html.retro-a11y-active .retro-term-entry h3 {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+html.retro-a11y-active .retro-term-note {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+html.retro-a11y-active .retro-term-section-intro {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive — tighter on mobile */
+@media (max-width: 600px) {
+  .retro-term-entry {
+    padding: 0.8rem 0.85rem;
+  }
+
+  .retro-term-note {
+    padding: 0.7rem 0.8rem;
+  }
+
+  .retro-term-entry h3 {
+    font-size: 1.05rem;
+  }
 }
 
 /* =========================================================
@@ -2254,18 +2532,35 @@ html.retro-navbar-hidden .bs-sidebar {
 
 @keyframes retroLogoGlitchBefore {
   0%, 100% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
-  12% { opacity: 0.28; transform: translateX(4px); clip-path: inset(4% 0 70% 0); }
-  32% { opacity: 0.24; transform: translateX(-6px); clip-path: inset(36% 0 30% 0); }
-  58% { opacity: 0.18; transform: translateX(3px); clip-path: inset(66% 0 10% 0); }
-  78% { opacity: 0.12; transform: translateX(-2px); clip-path: inset(82% 0 2% 0); }
+  5%  { opacity: 0.55; transform: translateX(6px); clip-path: inset(4% 0 68% 0); }
+  10% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  18% { opacity: 0.45; transform: translateX(-8px); clip-path: inset(22% 0 48% 0); }
+  24% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  35% { opacity: 0.5; transform: translateX(5px); clip-path: inset(40% 0 28% 0); }
+  41% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  52% { opacity: 0.4; transform: translateX(-7px); clip-path: inset(56% 0 18% 0); }
+  57% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  68% { opacity: 0.35; transform: translateX(4px); clip-path: inset(72% 0 8% 0); }
+  73% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  84% { opacity: 0.3; transform: translateX(-5px); clip-path: inset(86% 0 2% 0); }
+  89% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
 }
 
 @keyframes retroLogoGlitchAfter {
   0%, 100% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
-  16% { opacity: 0.2; transform: translateX(-4px); clip-path: inset(14% 0 58% 0); }
-  38% { opacity: 0.24; transform: translateX(5px); clip-path: inset(50% 0 18% 0); }
-  62% { opacity: 0.16; transform: translateX(-3px); clip-path: inset(74% 0 6% 0); }
-  82% { opacity: 0.1; transform: translateX(2px); clip-path: inset(88% 0 0 0); }
+  3%  { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  8%  { opacity: 0.5; transform: translateX(-6px); clip-path: inset(10% 0 62% 0); }
+  14% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  22% { opacity: 0.45; transform: translateX(7px); clip-path: inset(30% 0 38% 0); }
+  28% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  38% { opacity: 0.5; transform: translateX(-5px); clip-path: inset(48% 0 22% 0); }
+  44% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  55% { opacity: 0.4; transform: translateX(8px); clip-path: inset(62% 0 14% 0); }
+  60% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  72% { opacity: 0.35; transform: translateX(-4px); clip-path: inset(78% 0 6% 0); }
+  77% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+  88% { opacity: 0.25; transform: translateX(5px); clip-path: inset(90% 0 0 0); }
+  92% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
 }
 
 @keyframes retroCursorBlink {
@@ -3160,7 +3455,7 @@ body[data-lightbox-theme="theme-level-3"] .global-lightbox__hint {
 .retro-section-nav__link,
 .retro-nav-button,
 .retro-content-footer .retro-button,
-#retro-homepage .retro-button,
+#retro-homepage .retro-button:not(.retro-skip-intro),
 .retro-content-page .retro-button {
   width: 220px;
   min-width: 220px;
@@ -3450,7 +3745,7 @@ img.global-lightbox-target {
 .retro-section-nav__link,
 .retro-nav-button,
 .retro-content-footer .retro-button,
-#retro-homepage .retro-button,
+#retro-homepage .retro-button:not(.retro-skip-intro),
 .retro-content-page .retro-button {
   flex: 0 0 220px !important;
   width: 220px !important;
@@ -3496,7 +3791,7 @@ img.global-lightbox-target {
 .retro-content-footer .retro-button,
 a.retro-nav-button,
 a.retro-section-nav__link,
-#retro-homepage .retro-button,
+#retro-homepage .retro-button:not(.retro-skip-intro),
 .retro-content-page .retro-button {
   flex: 0 0 220px !important;
   width: 220px !important;
@@ -3900,12 +4195,12 @@ a.retro-section-nav__link,
 
 #retro-homepage .retro-logo-glitch:hover::before,
 #retro-homepage .retro-logo-glitch.is-glitching::before {
-  animation: retroLogoGlitchBefore 0.56s steps(3, end) forwards;
+  animation: retroLogoGlitchBefore 1.2s steps(6, end) infinite;
 }
 
 #retro-homepage .retro-logo-glitch:hover::after,
 #retro-homepage .retro-logo-glitch.is-glitching::after {
-  animation: retroLogoGlitchAfter 0.56s steps(3, end) forwards;
+  animation: retroLogoGlitchAfter 1.2s steps(6, end) infinite;
 }
 
 @keyframes retroCopySparkle {
@@ -4592,4 +4887,33 @@ body > .container {
   flex: 0 0 auto !important;
   height: auto !important;
   min-height: 64px !important;
+}
+
+/* =========================================================
+   HOMEPAGE RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 560px) {
+  #retro-homepage .retro-boot-screen {
+    min-height: 280px;
+    padding: 2rem 1rem 1.25rem;
+  }
+
+  #retro-homepage .retro-hero {
+    padding: 1.5rem 0 0.5rem;
+  }
+
+  #retro-homepage .retro-hero h1 {
+    font-size: 2rem;
+  }
+
+  #retro-homepage .retro-hero .retro-start-panel {
+    margin-top: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  #retro-homepage .retro-logo-wrap {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
 }

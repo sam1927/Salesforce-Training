@@ -34,7 +34,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/accessing-your-sessions/open-recently-viewed-sessions.gif"
+              src="../assets/images/accessing-your-sessions/open-recently-viewed-sessions.gif"
               alt="Using the dropdown arrow next to Recently Viewed"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -62,7 +62,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/accessing-your-sessions/view-session-list-views.gif"
+              src="../assets/images/accessing-your-sessions/view-session-list-views.gif"
               alt="How to see and use different session list views"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -80,7 +80,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/accessing-your-sessions/open-session-from-mentee-profile.gif"
+              src="../assets/images/accessing-your-sessions/open-session-from-mentee-profile.gif"
               alt="Requiring Confirmation New Mentee list view"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -102,7 +102,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/accessing-your-sessions/wrap-up-a-session-from-today.gif"
+              src="../assets/images/accessing-your-sessions/wrap-up-a-session-from-today.gif"
               alt="Requiring Wrap Up Today list view"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -165,15 +165,15 @@
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/accessing-your-mentees/"
+        href="../accessing-your-mentees/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link retro-nav-button"
-        href="/recording-an-absence-illness-and-holiday/"
-        data-target="/recording-an-absence-illness-and-holiday/"
+        href="../recording-an-absence-illness-and-holiday/"
+        data-target="../recording-an-absence-illness-and-holiday/"
       >
         Next Level
       </a>

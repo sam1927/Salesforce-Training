@@ -34,7 +34,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/wrap-up-a-session/open-session-notes.gif"
+              src="../assets/images/wrap-up-a-session/open-session-notes.gif"
               alt="Opening a Service Appointment and clicking Wrap Up Session"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -47,7 +47,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/wrap-up-a-session/open-wrap-up-from-session.gif"
+              src="../assets/images/wrap-up-a-session/open-wrap-up-from-session.gif"
               alt="Different places in the system where a Service Appointment can be opened"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -78,7 +78,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/wrap-up-a-session/log-session-details.gif"
+              src="../assets/images/wrap-up-a-session/log-session-details.gif"
               alt="Choosing the correct funding type during wrap up"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -125,7 +125,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/wrap-up-a-session/open-session-recording.gif"
+              src="../assets/images/wrap-up-a-session/open-session-recording.gif"
               alt="Cancelling a session from the Service Appointment"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -202,7 +202,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/wrap-up-a-session/submit-session-record.gif"
+              src="../assets/images/wrap-up-a-session/submit-session-record.gif"
               alt="Completed wrap up shown on the Service Appointment"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -243,15 +243,15 @@
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/using-calendar-events/"
+        href="../using-calendar-events/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link retro-nav-button"
-        href="/finding-your-mentees-and-sessions/"
-        data-target="/finding-your-mentees-and-sessions/"
+        href="../finding-your-mentees-and-sessions/"
+        data-target="../finding-your-mentees-and-sessions/"
       >
         Next Level
       </a>

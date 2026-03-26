@@ -26,7 +26,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/navigation/nav-bar.png"
+              src="../assets/images/navigation/nav-bar.png"
               alt="Navigation bar in the Community Site"
               class="retro-inline-image"
             >
@@ -42,7 +42,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/navigation/nav-bar.png"
+              src="../assets/images/navigation/nav-bar.png"
               alt="Navigation bar highlighting Appointment Management"
               class="retro-inline-image"
             >
@@ -147,7 +147,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/navigation/nav-bar.png"
+              src="../assets/images/navigation/nav-bar.png"
               alt="Navigation bar highlighting Support"
               class="retro-inline-image"
             >
@@ -189,7 +189,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/navigation/nav-bar.png"
+              src="../assets/images/navigation/nav-bar.png"
               alt="Navigation bar highlighting My Account"
               class="retro-inline-image"
             >
@@ -235,7 +235,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/navigation/nav-bar.png"
+              src="../assets/images/navigation/nav-bar.png"
               alt="Navigation bar highlighting Analytics"
               class="retro-inline-image"
             >
@@ -268,7 +268,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/navigation/nav-bar.png"
+              src="../assets/images/navigation/nav-bar.png"
               alt="Navigation bar highlighting Profile"
               class="retro-inline-image"
             >
@@ -318,7 +318,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/navigation/buttons.png"
+              src="../assets/images/navigation/buttons.png"
               alt="Extra links on the home page"
               class="retro-inline-image"
             >
@@ -391,8 +391,8 @@
     <div class="retro-content-footer">
       <a
         class="retro-button retro-section-nav__link retro-button-pulse retro-nav-button"
-        href="/what-to-do-first/"
-        data-target="/what-to-do-first/"
+        href="../what-to-do-first/"
+        data-target="../what-to-do-first/"
       >
         Next Level
       </a>
@@ -413,33 +413,5 @@
     </div>
   </div>
 
-  <script>
-    (function () {
-      const cards = document.querySelectorAll('[data-flip-card]');
-
-      cards.forEach((card) => {
-        const trigger = card.querySelector('[data-flip-trigger]');
-
-        if (!trigger) return;
-
-        function toggleFlip() {
-          const isFlipped = card.classList.toggle('is-flipped');
-          trigger.setAttribute('aria-expanded', isFlipped ? 'true' : 'false');
-        }
-
-        trigger.addEventListener('click', function (event) {
-          if (event.target.closest('a')) return;
-          toggleFlip();
-        });
-
-        trigger.addEventListener('keydown', function (event) {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            toggleFlip();
-          }
-        });
-      });
-    })();
-  </script>
 
 </div>

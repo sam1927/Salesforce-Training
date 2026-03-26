@@ -53,7 +53,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/support-ticket/open-support-ticket-form.gif"
+              src="../assets/images/support-ticket/open-support-ticket-form.gif"
               alt="How to raise a support ticket"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -163,15 +163,15 @@
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/my-account/"
+        href="../my-account/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link retro-nav-button"
-        href="/"
-        data-target="/"
+        href="../"
+        data-target="../"
       >
         Next Level
       </a>

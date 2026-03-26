@@ -7,7 +7,7 @@
       <h1>Dashboard</h1>
     </div>
 
-    <div class="retro-panel" style="text-align: center; padding: 3rem 2rem;">
+    <div class="retro-panel retro-panel--centered">
 
       <div class="retro-wip-banner">
         <div class="retro-wip-banner__icon">
@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <p style="margin-top: 2rem;">
+      <p class="retro-wip-message">
         This section is currently under development.
       </p>
       <p>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="retro-content-footer">
-      <a class="retro-button retro-section-nav__link" href="/how-to-log-a-support-ticket/">Back</a>
+      <a class="retro-button retro-section-nav__link" href="../how-to-log-a-support-ticket/">Previous Page</a>
     </div>
 
   </div>

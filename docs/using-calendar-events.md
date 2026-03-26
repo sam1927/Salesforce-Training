@@ -42,7 +42,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/using-calendar-events/split1.png"
+              src="../assets/images/using-calendar-events/split1.png"
               alt="Calendar hour split into top and bottom sections"
               class="retro-inline-image"
             >
@@ -327,7 +327,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/using-calendar-events/create-calendar-event.gif"
+              src="../assets/images/using-calendar-events/create-calendar-event.gif"
               alt="Deleting an event using the Delete Series option"
               class="retro-inline-image"
             >
@@ -359,7 +359,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/using-calendar-events/open-existing-calendar-event.gif"
+              src="../assets/images/using-calendar-events/open-existing-calendar-event.gif"
               alt="Small coloured square showing the session status"
               class="retro-inline-image retro-status-image"
             >
@@ -458,14 +458,14 @@
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/understanding-the-difference/"
+        href="../understanding-the-difference/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link"
-        href="/wrap-up-a-session/"
+        href="../wrap-up-a-session/"
       >
         Next Section
       </a>
@@ -486,35 +486,5 @@
     </div>
   </div>
 
-  <script>
-    (function () {
-      const cards = document.querySelectorAll('[data-flip-card]');
-      const animationClasses = ['is-animating-a', 'is-animating-b', 'is-animating-c'];
-
-      cards.forEach((card) => {
-        const trigger = card.querySelector('[data-flip-trigger]');
-        const presetAnimation = card.getAttribute('data-animation');
-
-        if (!trigger) return;
-
-        trigger.addEventListener('click', function () {
-          animationClasses.forEach((className) => card.classList.remove(className));
-
-          let animationClass = 'is-animating-a';
-          if (presetAnimation === 'b') animationClass = 'is-animating-b';
-          if (presetAnimation === 'c') animationClass = 'is-animating-c';
-
-          card.classList.add(animationClass);
-
-          const isFlipped = card.classList.toggle('is-flipped');
-          trigger.setAttribute('aria-expanded', isFlipped ? 'true' : 'false');
-
-          window.setTimeout(function () {
-            card.classList.remove(animationClass);
-          }, 900);
-        });
-      });
-    })();
-  </script>
 
 </div>

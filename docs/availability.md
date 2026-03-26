@@ -21,6 +21,9 @@
           <p>
             Once you have updated your <strong>games, equipment and preferences</strong>, the next step is to set your availability.
           </p>
+          <p>
+            In <strong>Salesforce</strong>, your availability is set up using <strong>operating hours</strong>.
+          </p>
         </section>
 
         <section class="retro-panel retro-step-panel" data-step-panel>
@@ -58,7 +61,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/availability/availabilityexample.gif"
+              src="../assets/images/availability/availabilityexample.gif"
               alt="Example of split availability time slots"
               class="retro-inline-image"
             >
@@ -77,7 +80,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/availability/availabilityexample2.gif"
+              src="../assets/images/availability/availabilityexample2.gif"
               alt="How to open a new availability time slot"
               class="retro-inline-image"
             >
@@ -112,7 +115,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/availability/timeslot1.png"
+              src="../assets/images/availability/timeslot1.png"
               alt="Example of entering Monday 9:00 to 1:00 in a time slot"
               class="retro-inline-image"
             >
@@ -129,7 +132,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/availability/timeslot2.png"
+              src="../assets/images/availability/timeslot2.png"
               alt="Example of entering Monday 2:00 to 5:00 in a time slot"
               class="retro-inline-image"
             >
@@ -180,7 +183,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/availability/timeslot3.png"
+              src="../assets/images/availability/timeslot3.png"
               alt="Example of using a Personal Time event to block out time"
               class="retro-inline-image"
             >
@@ -237,14 +240,14 @@
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/update-your-games-equipment-and-preferences/"
+        href="../update-your-games-equipment-and-preferences/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link retro-nav-button"
-        href="/understanding-the-difference/"
+        href="../understanding-the-difference/"
       >
         Next Level
       </a>

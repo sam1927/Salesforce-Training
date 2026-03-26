@@ -155,15 +155,15 @@
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/recording-an-absence-illness-and-holiday/"
+        href="../recording-an-absence-illness-and-holiday/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link retro-nav-button"
-        href="/how-to-log-a-support-ticket/"
-        data-target="/how-to-log-a-support-ticket/"
+        href="../how-to-log-a-support-ticket/"
+        data-target="../how-to-log-a-support-ticket/"
       >
         Next Level
       </a>

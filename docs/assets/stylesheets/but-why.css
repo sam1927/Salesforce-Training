@@ -294,8 +294,8 @@
 
 .retro-why-slide p {
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 1.25rem;
+  line-height: 1.75;
 }
 
 .retro-why-carousel__controls {
@@ -316,7 +316,7 @@
   }
 
   .retro-why-slide p {
-    font-size: 1rem;
+    font-size: 1.15rem;
     line-height: 1.7;
   }
 
@@ -378,6 +378,20 @@
 
 .retro-nav-tile.is-flipped .retro-nav-tile__inner {
   transform: rotateY(180deg);
+}
+
+/* Decorative flip accent — applied to the OUTER card so it does not
+   fight the rotateY transform on __inner.  Scale + brightness only. */
+.retro-nav-tile.is-animating-a {
+  animation: retro-clean-flip-a 0.65s ease-out;
+}
+
+.retro-nav-tile.is-animating-b {
+  animation: retro-clean-flip-b 0.7s ease-out;
+}
+
+.retro-nav-tile.is-animating-c {
+  animation: retro-clean-flip-c 0.68s ease-out;
 }
 
 .retro-nav-tile__face {
@@ -543,16 +557,18 @@
   transform: rotateY(180deg);
 }
 
-.retro-flip-card.is-animating-a .retro-flip-card__inner {
-  animation: retro-arcade-flip-a 0.78s steps(2, end);
+/* Decorative flip accent — applied to the OUTER card so it does not
+   fight the rotateY transform on __inner.  Scale + brightness only. */
+.retro-flip-card.is-animating-a {
+  animation: retro-clean-flip-a 0.65s ease-out;
 }
 
-.retro-flip-card.is-animating-b .retro-flip-card__inner {
-  animation: retro-arcade-flip-b 0.82s steps(3, end);
+.retro-flip-card.is-animating-b {
+  animation: retro-clean-flip-b 0.7s ease-out;
 }
 
-.retro-flip-card.is-animating-c .retro-flip-card__inner {
-  animation: retro-arcade-flip-c 0.8s steps(2, end);
+.retro-flip-card.is-animating-c {
+  animation: retro-clean-flip-c 0.68s ease-out;
 }
 
 .retro-flip-card__face {
@@ -697,37 +713,26 @@
   line-height: 1.5;
 }
 
-@keyframes retro-arcade-flip-a {
-  0% { filter: none; }
-  12% { filter: hue-rotate(20deg) brightness(1.15); }
-  18% { transform: translateX(-8px) scaleX(0.98); }
-  28% { transform: translateX(7px) scaleX(1.02); }
-  40% { filter: contrast(1.28) saturate(1.25); }
-  55% { transform: translateY(-4px) skewX(-2deg); }
-  70% { transform: translateY(3px) skewX(2deg); }
-  100% { filter: none; }
+/* Clean flip accent animations — slight scale/glow on flip */
+@keyframes retro-clean-flip-a {
+  0%   { filter: brightness(1); transform: scale(1); }
+  30%  { filter: brightness(1.12); transform: scale(1.015); }
+  60%  { filter: brightness(1.06); transform: scale(1.005); }
+  100% { filter: brightness(1); transform: scale(1); }
 }
 
-@keyframes retro-arcade-flip-b {
-  0% { filter: none; }
-  10% { transform: scale(1.01) translate(-3px, 0); }
-  20% { transform: scale(0.99) translate(4px, 0); filter: brightness(1.25) contrast(1.2); }
-  32% { transform: translate(-6px, 2px) skewY(-1.5deg); }
-  44% { transform: translate(5px, -2px) skewY(1.5deg); }
-  58% { filter: hue-rotate(-24deg) saturate(1.4); }
-  72% { transform: scale(1.015); }
-  100% { filter: none; }
+@keyframes retro-clean-flip-b {
+  0%   { filter: brightness(1); transform: scale(1); }
+  25%  { filter: brightness(1.1); transform: scale(0.985); }
+  50%  { filter: brightness(1.08); transform: scale(1.01); }
+  100% { filter: brightness(1); transform: scale(1); }
 }
 
-@keyframes retro-arcade-flip-c {
-  0% { filter: none; }
-  8% { transform: translateY(-6px); }
-  18% { transform: translateY(5px); filter: brightness(1.22); }
-  30% { transform: translateX(-7px) skewX(-3deg); }
-  42% { transform: translateX(7px) skewX(3deg); filter: contrast(1.3) hue-rotate(30deg); }
-  56% { transform: translate(-3px, 2px) scale(1.01); }
-  70% { transform: translate(3px, -2px) scale(0.995); }
-  100% { filter: none; }
+@keyframes retro-clean-flip-c {
+  0%   { filter: brightness(1); transform: scale(1); }
+  35%  { filter: brightness(1.14); transform: scale(1.01); }
+  65%  { filter: brightness(1.04); transform: scale(0.995); }
+  100% { filter: brightness(1); transform: scale(1); }
 }
 
 @media (max-width: 900px) {
@@ -743,6 +748,16 @@
     font-size: 1rem;
     line-height: 1.55;
   }
+}
+
+/* --- Dashboard: centred panel & message --- */
+.retro-panel--centered {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.retro-wip-message {
+  margin-top: 2rem;
 }
 
 /* --- Dashboard: WIP banner --- */

@@ -2,42 +2,47 @@
 
   <div id="retro-boot" class="retro-boot-screen">
     <pre id="boot-text"></pre>
+    <button id="skip-intro" class="retro-button retro-skip-intro" type="button">Skip Intro</button>
   </div>
 
   <div id="retro-main" class="retro-main-content" style="display: none;">
 
-    <h1>Salesforce Training Guide</h1>
+    <div class="retro-hero">
+      <h1>Salesforce Training Guide</h1>
 
-    <p>
-      Welcome to the <strong>MindJam Salesforce Training Guide</strong>.
-    </p>
+      <div class="retro-panel retro-hero__body">
+        <p>
+          Welcome to the <strong>MindJam Salesforce Training Guide</strong>.
+        </p>
 
-    <p>
-      This guide introduces the key information you need to use the <strong>Salesforce Community</strong>
-      site to manage and run your mentoring sessions.
-    </p>
+        <p>
+          This guide introduces the key information you need to use the <strong>Salesforce Community</strong>
+          site to manage and run your mentoring sessions.
+        </p>
 
-    <p>
-      The guide is organised into clear sections. We recommend following them in chronological order,
-      as each section builds on the previous one and will help you set up your account step by step.
-    </p>
+        <p>
+          The guide is organised into clear sections. We recommend following them in chronological order,
+          as each section builds on the previous one and will help you set up your account step by step.
+        </p>
 
-    <p>
-      If you prefer, a <a href="assets/PDFs/Salesforce_Training_Guide_Print_Edition.pdf" target="_blank" rel="noopener"><strong>separate overview guide</strong></a> is also available. This allows you to
-      explore the features in a more flexible way without following the step-by-step order.
-    </p>
+        <p>
+          If you prefer, a <a href="assets/PDFs/Salesforce_Training_Guide_Print_Edition.pdf" target="_blank" rel="noopener"><strong>separate overview guide</strong></a> is also available. This allows you to
+          explore the features in a more flexible way without following the step-by-step order.
+        </p>
+      </div>
 
-    <div class="retro-panel retro-start-panel">
-      <a
-        id="retro-start-here"
-        class="retro-button retro-section-nav__link retro-button-pulse retro-nav-button"
-        href="/but-why/"
-        data-target="/but-why/"
-        data-transition-title="=== NEXT LEVEL ==="
-        data-transition-page="But Why"
-      >
-        Start Here
-      </a>
+      <div class="retro-panel retro-start-panel">
+        <a
+          id="retro-start-here"
+          class="retro-button retro-section-nav__link retro-button-pulse retro-nav-button"
+          href="but-why/"
+          data-target="but-why/"
+          data-transition-title="=== NEXT LEVEL ==="
+          data-transition-page="But Why"
+        >
+          Start Here
+        </a>
+      </div>
     </div>
 
     <div class="retro-logo-wrap">

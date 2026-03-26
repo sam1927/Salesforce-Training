@@ -39,6 +39,7 @@ nav:
 extra_css:
   - assets/stylesheets/retro-home.css
   - assets/stylesheets/but-why.css
+  - assets/stylesheets/extra.css
 
 extra_javascript:
   - assets/javascripts/retro-home.js

@@ -1,5 +1,9 @@
 /* =========================================================
    THEME SELECTOR — Normal / Warm / Cool
+   =========================================================
+   Source of truth: localStorage key "retroTheme"
+   Values: "normal" (default) | "warm" | "cool"
+   DOM mechanism: html.retro-a11y-active + --retro-a11y-bg CSS var
    ========================================================= */
 document.addEventListener("DOMContentLoaded", function () {
   var page = document.querySelector(".retro-content-page");
@@ -7,11 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   page.setAttribute("data-has-theme-selector", "true");
 
-  var THEMES = {
-    normal: { bg: "", label: "Normal" },
-    warm:   { bg: "#ffedbd", label: "Warm" },
-    cool:   { bg: "#caf9fc", label: "Cool" }
-  };
+  var THEME_BG = { warm: "#ffedbd", cool: "#caf9fc" };
+  var THEME_LABELS = { normal: "Normal", warm: "Warm", cool: "Cool" };
+  var THEME_KEYS = ["normal", "warm", "cool"];
 
   /* --- Build UI ------------------------------------------------ */
   var wrapper = document.createElement("div");
@@ -30,13 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
   panel.setAttribute("aria-label", "Theme selection");
 
   var optionEls = {};
-  ["normal", "warm", "cool"].forEach(function (key) {
+  THEME_KEYS.forEach(function (key) {
     var opt = document.createElement("button");
     opt.type = "button";
     opt.className = "retro-theme-option retro-theme-option--" + key;
     opt.setAttribute("role", "option");
     opt.setAttribute("data-theme", key);
-    opt.textContent = THEMES[key].label;
+    opt.textContent = THEME_LABELS[key];
     panel.appendChild(opt);
     optionEls[key] = opt;
   });
@@ -51,8 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function applyTheme(name) {
-    var theme = THEMES[name] || THEMES.normal;
+    if (!THEME_LABELS[name]) name = "normal";
     var root = document.documentElement;
+    var bg = THEME_BG[name];
 
     /* Trigger the wash overlay */
     root.classList.add("retro-theme-switching");
@@ -60,29 +63,25 @@ document.addEventListener("DOMContentLoaded", function () {
       root.classList.remove("retro-theme-switching");
     }, 500);
 
-    if (name === "normal") {
-      root.classList.remove("retro-a11y-active");
-      root.removeAttribute("data-a11y-bg");
-      root.style.removeProperty("--retro-a11y-bg");
-    } else {
+    if (bg) {
       root.classList.add("retro-a11y-active");
-      root.setAttribute("data-a11y-bg", theme.bg);
-      root.style.setProperty("--retro-a11y-bg", theme.bg);
+      root.setAttribute("data-retro-theme", name);
+      root.style.setProperty("--retro-a11y-bg", bg);
+    } else {
+      root.classList.remove("retro-a11y-active");
+      root.removeAttribute("data-retro-theme");
+      root.style.removeProperty("--retro-a11y-bg");
     }
 
-    try {
-      window.localStorage.setItem("retroTheme", name);
-      /* Clean up old keys from previous system */
-      window.localStorage.removeItem("retroA11yActive");
-      window.localStorage.removeItem("retroA11yBg");
-    } catch (e) { /* ignore */ }
+    try { window.localStorage.setItem("retroTheme", name); }
+    catch (e) { /* ignore */ }
 
     renderUI(name);
   }
 
   function renderUI(active) {
     if (!active) active = getStoredTheme();
-    ["normal", "warm", "cool"].forEach(function (key) {
+    THEME_KEYS.forEach(function (key) {
       var el = optionEls[key];
       var isCurrent = key === active;
       el.classList.toggle("is-selected", isCurrent);
@@ -117,30 +116,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   wrapper.addEventListener("click", function (e) { e.stopPropagation(); });
 
-  /* --- Restore saved theme on load ----------------------------- */
+  /* --- Restore saved theme on load (no wash animation) --------- */
   var saved = getStoredTheme();
-
-  /* Migrate old storage format to new single-key format */
-  if (saved === "normal") {
-    try {
-      var oldActive = window.localStorage.getItem("retroA11yActive");
-      if (oldActive === "true") {
-        var oldBg = window.localStorage.getItem("retroA11yBg") || "#ffedbd";
-        saved = oldBg === "#caf9fc" ? "cool" : "warm";
-        window.localStorage.setItem("retroTheme", saved);
-        window.localStorage.removeItem("retroA11yActive");
-        window.localStorage.removeItem("retroA11yBg");
-      }
-    } catch (e) { /* ignore */ }
-  }
-
-  /* Apply without wash animation on first load */
-  if (saved !== "normal") {
-    var root = document.documentElement;
-    var theme = THEMES[saved] || THEMES.normal;
-    root.classList.add("retro-a11y-active");
-    root.setAttribute("data-a11y-bg", theme.bg);
-    root.style.setProperty("--retro-a11y-bg", theme.bg);
+  var savedBg = THEME_BG[saved];
+  if (savedBg) {
+    document.documentElement.classList.add("retro-a11y-active");
+    document.documentElement.setAttribute("data-retro-theme", saved);
+    document.documentElement.style.setProperty("--retro-a11y-bg", savedBg);
+  } else {
+    /* Explicitly enforce Normal: clear any stale a11y state */
+    document.documentElement.classList.remove("retro-a11y-active");
+    document.documentElement.removeAttribute("data-retro-theme");
+    document.documentElement.style.removeProperty("--retro-a11y-bg");
+    try { window.localStorage.setItem("retroTheme", "normal"); }
+    catch (e) { /* ignore */ }
   }
   renderUI(saved);
 });
@@ -175,40 +164,115 @@ document.addEventListener("DOMContentLoaded", function () {
   var navTextLabel = navbarToggle.querySelector(".retro-navbar-toggle__text");
   var navStateLabel = navbarToggle.querySelector(".retro-navbar-toggle__state");
 
+  /* -----------------------------------------------------------
+     NAV DRAWER STATE MACHINE
+     States: "open" | "closing" | "closed" | "opening"
+     Source of truth: navState variable + DOM classes
+     ----------------------------------------------------------- */
+  var navState = isNavbarHidden() ? "closed" : "open";
+  var navTimer = null;
+  var navbar = document.querySelector(".navbar.fixed-top");
+
   function isNavbarHidden() {
     return document.documentElement.classList.contains("retro-navbar-hidden");
   }
 
-  function renderNavbarState() {
-    var hidden = isNavbarHidden();
-
-    navbarToggle.classList.toggle("is-hidden-state", hidden);
-    navbarToggle.setAttribute("aria-pressed", hidden ? "true" : "false");
-
-    if (navTextLabel) {
-      navTextLabel.textContent = hidden ? "Show Navigation" : "Hide Navigation";
-    }
-
-    if (navStateLabel) {
-      navStateLabel.textContent = hidden ? "OFF" : "ON";
+  function setNavState(state) {
+    navState = state;
+    if (navbar) {
+      navbar.setAttribute("data-nav-state", state);
     }
   }
 
+  function syncToggleUI() {
+    var hidden = navState === "closed" || navState === "closing";
+    navbarToggle.classList.toggle("is-hidden-state", hidden);
+    navbarToggle.setAttribute("aria-pressed", hidden ? "true" : "false");
+    if (navTextLabel) navTextLabel.textContent = hidden ? "Show Navigation" : "Hide Navigation";
+    if (navStateLabel) navStateLabel.textContent = hidden ? "OFF" : "ON";
+  }
+
+  function clearNavTimer() {
+    if (navTimer) { clearTimeout(navTimer); navTimer = null; }
+  }
+
+  function saveNavState(hidden) {
+    try { window.sessionStorage.setItem(navbarStorageKey, hidden ? "true" : "false"); }
+    catch (e) { /* ignore */ }
+  }
+
+  function getNavItems() {
+    return navbar ? navbar.querySelectorAll(".navbar-nav .nav-link, .navbar-nav .dropdown-item") : [];
+  }
+
+  /* --- CLOSE: items fade out → panel slides away → done --- */
+  function closeNav() {
+    if (!navbar || navState === "closed" || navState === "closing") return;
+    clearNavTimer();
+
+    var items = getNavItems();
+    var count = items.length;
+
+    /* Assign reverse stagger indices */
+    items.forEach(function (el, i) { el.style.setProperty("--nav-i", count - 1 - i); });
+    navbar.style.setProperty("--nav-total", count);
+
+    /* Enter closing state — items animate out, panel stays visible */
+    navbar.classList.remove("retro-nav-booting");
+    navbar.classList.add("retro-nav-powering-down");
+    setNavState("closing");
+    syncToggleUI();
+
+    /* After item animations finish, hide the panel */
+    var itemDuration = count * 18 + 120;
+    navTimer = setTimeout(function () {
+      /* Panel CSS transition fires here (opacity/transform via retro-navbar-hidden) */
+      document.documentElement.classList.add("retro-navbar-hidden");
+      saveNavState(true);
+
+      /* After panel transition completes, finalize closed state */
+      navTimer = setTimeout(function () {
+        navbar.classList.remove("retro-nav-powering-down");
+        setNavState("closed");
+      }, 380);
+    }, itemDuration);
+  }
+
+  /* --- OPEN: panel slides in → items stagger in → done --- */
+  function openNav() {
+    if (!navbar || navState === "open" || navState === "opening") return;
+    clearNavTimer();
+
+    /* Immediately show the panel */
+    navbar.classList.remove("retro-nav-powering-down");
+    document.documentElement.classList.remove("retro-navbar-hidden");
+    saveNavState(false);
+    setNavState("opening");
+    syncToggleUI();
+
+    /* Stagger items in */
+    var items = getNavItems();
+    items.forEach(function (el, i) { el.style.setProperty("--nav-i", i); });
+    navbar.classList.add("retro-nav-booting");
+
+    var maxDelay = items.length * 28 + 180;
+    navTimer = setTimeout(function () {
+      navbar.classList.remove("retro-nav-booting");
+      setNavState("open");
+    }, maxDelay);
+  }
+
   navbarToggle.addEventListener("click", function () {
-    var hidden = !isNavbarHidden();
-
-    document.documentElement.classList.toggle("retro-navbar-hidden", hidden);
-
-    try {
-      window.sessionStorage.setItem(navbarStorageKey, hidden ? "true" : "false");
-    } catch (error) {
-      /* ignore storage issues */
+    if (navState === "open" || navState === "opening") {
+      closeNav();
+    } else {
+      openNav();
     }
-
-    renderNavbarState();
   });
 
-  renderNavbarState();
+  /* Initialize */
+  setNavState(navState);
+  syncToggleUI();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -217,6 +281,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainContent = document.getElementById("retro-main");
   const bootText = document.getElementById("boot-text");
   const revealLayer = document.getElementById("retro-reveal");
+
+  const skipButton = document.getElementById("skip-intro");
 
   if (!homeWrapper || !bootScreen || !mainContent || !bootText || !revealLayer) {
     return;
@@ -243,8 +309,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let lineIndex = 0;
   let charIndex = 0;
+  let introFinished = false;
+  let typingTimer = null;
 
   function showMainWithReveal() {
+    if (introFinished) return;
+    introFinished = true;
+
+    if (skipButton) skipButton.style.display = "none";
+
     window.setTimeout(function () {
       revealLayer.classList.add("is-active");
     }, finalPauseBeforeReveal);
@@ -265,6 +338,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function typeNextCharacter() {
+    if (introFinished) return;
+
     if (lineIndex >= lines.length) {
       showMainWithReveal();
       return;
@@ -275,7 +350,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (charIndex < currentLine.length) {
       bootText.textContent += currentLine.charAt(charIndex);
       charIndex += 1;
-      window.setTimeout(typeNextCharacter, defaultCharacterDelay);
+      typingTimer = window.setTimeout(typeNextCharacter, defaultCharacterDelay);
       return;
     }
 
@@ -292,7 +367,18 @@ document.addEventListener("DOMContentLoaded", function () {
     lineIndex += 1;
     charIndex = 0;
 
-    window.setTimeout(typeNextCharacter, pauseAfterLine);
+    typingTimer = window.setTimeout(typeNextCharacter, pauseAfterLine);
+  }
+
+  if (skipButton) {
+    skipButton.addEventListener("click", function () {
+      if (introFinished) return;
+      if (typingTimer) {
+        clearTimeout(typingTimer);
+        typingTimer = null;
+      }
+      showMainWithReveal();
+    });
   }
 
   typeNextCharacter();
@@ -314,26 +400,40 @@ document.addEventListener("DOMContentLoaded", function () {
     const logoUrl = logo.currentSrc || logo.src || new URL(logo.getAttribute("src"), window.location.href).href;
     wrapper.style.setProperty("--retro-logo-image", `url("${logoUrl}")`);
 
-    let cooldown = false;
+    var ambientTimer = null;
 
-    function triggerGlitch() {
-      if (cooldown) return;
-      cooldown = true;
+    function startAmbientGlitch() {
+      stopAmbientGlitch();
+      wrapper.classList.add("is-glitching");
+    }
+
+    function stopAmbientGlitch() {
+      wrapper.classList.remove("is-glitching");
+    }
+
+    /* Gentle single-pulse every 5 seconds when NOT hovered */
+    function triggerIdleGlitch() {
       wrapper.classList.remove("is-glitching");
       void wrapper.offsetWidth;
       wrapper.classList.add("is-glitching");
-
       window.setTimeout(function () {
         wrapper.classList.remove("is-glitching");
-        cooldown = false;
-      }, 460);
+      }, 1800);
     }
 
-    /* Auto-loop every 5 seconds */
-    window.setInterval(triggerGlitch, 5000);
+    ambientTimer = window.setInterval(triggerIdleGlitch, 5000);
 
-    /* Also trigger on hover */
-    wrapper.addEventListener("mouseenter", triggerGlitch);
+    /* On hover: start continuous loop; on leave: stop cleanly */
+    wrapper.addEventListener("mouseenter", function () {
+      clearInterval(ambientTimer);
+      ambientTimer = null;
+      startAmbientGlitch();
+    });
+
+    wrapper.addEventListener("mouseleave", function () {
+      stopAmbientGlitch();
+      ambientTimer = window.setInterval(triggerIdleGlitch, 5000);
+    });
   }
 });
 
@@ -756,7 +856,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const currentPath = window.location.pathname.endsWith("/")
     ? window.location.pathname
     : window.location.pathname + "/";
-  const currentIndex = pageSequence.indexOf(currentPath);
+  const currentIndex = pageSequence.findIndex(function (page) {
+    return currentPath.endsWith(page);
+  });
 
   if (currentIndex <= 0) {
     return;
@@ -769,7 +871,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const existingBack = Array.from(footer.querySelectorAll("a, button")).some(function (item) {
-    return (item.textContent || "").replace(/\s+/g, " ").trim().toLowerCase() === "back";
+    return (item.textContent || "").replace(/\s+/g, " ").trim().toLowerCase() === "previous page";
   });
 
   if (existingBack) {
@@ -780,8 +882,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const backLink = document.createElement("a");
   backLink.className = "retro-button retro-section-nav__link";
-  backLink.href = pageSequence[currentIndex - 1];
-  backLink.textContent = "Back";
+  backLink.href = "../" + pageSequence[currentIndex - 1].replace(/^\//, "");
+  backLink.textContent = "Previous Page";
 
   footer.insertBefore(backLink, footer.firstChild);
 });
@@ -1014,26 +1116,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const logoWrapper = document.querySelector("#retro-homepage .retro-logo-glitch");
-
-  if (!logoWrapper) {
-    return;
-  }
-
-  function forceHoverGlitch() {
-    logoWrapper.classList.remove("is-glitching");
-    void logoWrapper.offsetWidth;
-    logoWrapper.classList.add("is-glitching");
-    window.setTimeout(function () {
-      logoWrapper.classList.remove("is-glitching");
-    }, 620);
-  }
-
-  logoWrapper.addEventListener("mouseenter", forceHoverGlitch);
-  logoWrapper.addEventListener("pointerenter", forceHoverGlitch);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
   const pageSequence = [
     "/switching-systems-mid-month/",
     "/first-time-logging-in/",
@@ -1056,7 +1138,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const currentPath = window.location.pathname.endsWith("/")
     ? window.location.pathname
     : window.location.pathname + "/";
-  const currentIndex = pageSequence.indexOf(currentPath);
+  const currentIndex = pageSequence.findIndex(function (page) {
+    return currentPath.endsWith(page);
+  });
 
   if (currentIndex <= 0) {
     return;
@@ -1069,7 +1153,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const existingBack = Array.from(footer.querySelectorAll("a, button")).some(function (item) {
-    return (item.textContent || "").replace(/\s+/g, " ").trim().toLowerCase() === "back";
+    return (item.textContent || "").replace(/\s+/g, " ").trim().toLowerCase() === "previous page";
   });
 
   if (existingBack) {
@@ -1080,8 +1164,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const backLink = document.createElement("a");
   backLink.className = "retro-button retro-section-nav__link";
-  backLink.href = pageSequence[currentIndex - 1];
-  backLink.textContent = "Back";
+  backLink.href = "../" + pageSequence[currentIndex - 1].replace(/^\//, "");
+  backLink.textContent = "Previous Page";
 
   footer.insertBefore(backLink, footer.firstChild);
 });
@@ -1473,4 +1557,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Child page links navigate normally — no interference needed
      since Bootstrap dropdown is no longer controlling these elements. */
+});
+
+/* =========================================================
+   FLIP CARDS — unified handler for [data-flip-card] elements
+   Used by both retro-nav-tile and retro-flip-card systems.
+   ========================================================= */
+document.addEventListener("DOMContentLoaded", function () {
+  var cards = document.querySelectorAll("[data-flip-card]");
+  if (!cards.length) return;
+
+  var animClasses = ["is-animating-a", "is-animating-b", "is-animating-c"];
+
+  cards.forEach(function (card) {
+    var trigger = card.querySelector("[data-flip-trigger]");
+    var preset = card.getAttribute("data-animation");
+    if (!trigger) return;
+
+    function toggleFlip() {
+      /* Remove any running accent animation */
+      animClasses.forEach(function (c) { card.classList.remove(c); });
+
+      /* Pick and apply the decorative accent animation */
+      var animClass = preset === "b" ? "is-animating-b"
+                    : preset === "c" ? "is-animating-c"
+                    : "is-animating-a";
+      card.classList.add(animClass);
+
+      /* Toggle the flip state */
+      var isFlipped = card.classList.toggle("is-flipped");
+      trigger.setAttribute("aria-expanded", isFlipped ? "true" : "false");
+
+      /* Clean up accent class after it finishes */
+      window.setTimeout(function () { card.classList.remove(animClass); }, 900);
+    }
+
+    trigger.addEventListener("click", function (e) {
+      if (e.target.closest("a")) return;
+      toggleFlip();
+    });
+    trigger.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleFlip(); }
+    });
+  });
 });

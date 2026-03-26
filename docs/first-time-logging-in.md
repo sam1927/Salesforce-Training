@@ -35,7 +35,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/first-time-logging-in/change-password-email.png"
+              src="../assets/images/first-time-logging-in/change-password-email.png"
               alt="Change Password email example"
               class="retro-inline-image"
             >
@@ -125,8 +125,8 @@
     <div class="retro-content-footer">
       <a
         class="retro-button retro-section-nav__link retro-button-pulse retro-nav-button"
-        href="/how-to-navigate-the-community-site/"
-        data-target="/how-to-navigate-the-community-site/"
+        href="../how-to-navigate-the-community-site/"
+        data-target="../how-to-navigate-the-community-site/"
       >
         Next Level
       </a>

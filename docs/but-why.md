@@ -96,8 +96,8 @@
     <div class="retro-content-footer">
       <a
         class="retro-button retro-section-nav__link retro-button-pulse retro-nav-button"
-        href="/switching-systems-mid-month/"
-        data-target="/switching-systems-mid-month/"
+        href="../switching-systems-mid-month/"
+        data-target="../switching-systems-mid-month/"
       >
         Next Level
       </a>

@@ -1,34 +1,39 @@
 {% extends "base.html" %}
 
+{% block site_meta %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if page and page.is_homepage %}<meta name="description" content="{{ config.site_description }}">{% endif %}
+  {% if config.site_author %}<meta name="author" content="{{ config.site_author }}">{% endif %}
+  {% if page and page.canonical_url %}<link rel="canonical" href="{{ page.canonical_url }}">{% endif %}
+  <link rel="icon" href="{{ 'assets/images/FaveIcon/FaveIcon.png'|url }}" type="image/png">
+{% endblock %}
+
 {% block extrahead %}
   {{ super() }}
   <script>
+    /* Early paint: apply saved theme + nav state before first render to prevent flash.
+       Source of truth: localStorage "retroTheme" = "normal" | "warm" | "cool"
+       Source of truth: sessionStorage "retroNavbarHidden" = "true" | "false"  */
     (function () {
       try {
+        var THEME_BG = { warm: "#ffedbd", cool: "#caf9fc" };
         var theme = window.localStorage && window.localStorage.getItem("retroTheme");
-        /* Migrate old storage format */
-        if (!theme && window.localStorage && window.localStorage.getItem("retroA11yActive") === "true") {
-          var oldBg = window.localStorage.getItem("retroA11yBg") || "#ffedbd";
-          theme = oldBg === "#caf9fc" ? "cool" : "warm";
-          window.localStorage.setItem("retroTheme", theme);
-          window.localStorage.removeItem("retroA11yActive");
-          window.localStorage.removeItem("retroA11yBg");
+        if (!theme) {
+          try { window.localStorage.setItem("retroTheme", "normal"); } catch (e) {}
+          theme = "normal";
         }
-        if (theme === "warm") {
+        var bg = THEME_BG[theme];
+        if (bg) {
           document.documentElement.classList.add("retro-a11y-active");
-          document.documentElement.setAttribute("data-a11y-bg", "#ffedbd");
-          document.documentElement.style.setProperty("--retro-a11y-bg", "#ffedbd");
-        } else if (theme === "cool") {
-          document.documentElement.classList.add("retro-a11y-active");
-          document.documentElement.setAttribute("data-a11y-bg", "#caf9fc");
-          document.documentElement.style.setProperty("--retro-a11y-bg", "#caf9fc");
+          document.documentElement.setAttribute("data-retro-theme", theme);
+          document.documentElement.style.setProperty("--retro-a11y-bg", bg);
         }
         if (window.sessionStorage && window.sessionStorage.getItem("retroNavbarHidden") === "true") {
           document.documentElement.classList.add("retro-navbar-hidden");
         }
-      } catch (error) {
-        /* ignore storage issues */
-      }
+      } catch (e) { /* storage unavailable */ }
     })();
   </script>
 {% endblock %}

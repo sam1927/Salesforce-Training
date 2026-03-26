@@ -155,11 +155,18 @@
       </div>
     </div>
 
-    <div class="retro-content-footer">
+    <div class="retro-content-footer retro-section-nav">
+      <a
+        class="retro-button retro-section-nav__link"
+        href="../but-why/"
+      >
+        Previous Page
+      </a>
+
       <a
         class="retro-button retro-section-nav__link retro-button-pulse retro-nav-button"
-        href="/first-time-logging-in/"
-        data-target="/first-time-logging-in/"
+        href="../first-time-logging-in/"
+        data-target="../first-time-logging-in/"
       >
         Next Level
       </a>

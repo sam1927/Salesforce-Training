@@ -64,7 +64,7 @@
     <div class="retro-content-footer">
       <a
         class="retro-button retro-section-nav__link"
-        href="/update-your-games-equipment-and-preferences/"
+        href="../update-your-games-equipment-and-preferences/"
       >
         Continue
       </a>

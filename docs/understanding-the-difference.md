@@ -36,7 +36,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/understanding-the-difference/open-mentee-profile-view.gif"
+              src="../assets/images/understanding-the-difference/open-mentee-profile-view.gif"
               alt="Opening a mentee profile by clicking on the young person's name"
               class="retro-inline-image"
             >
@@ -68,7 +68,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/understanding-the-difference/open-calendar-event-view.gif"
+              src="../assets/images/understanding-the-difference/open-calendar-event-view.gif"
               alt="A calendar event in the mentor calendar"
               class="retro-inline-image"
             >
@@ -98,7 +98,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/understanding-the-difference/open-service-appointment-view.gif"
+              src="../assets/images/understanding-the-difference/open-service-appointment-view.gif"
               alt="Opening a service appointment from the SA link"
               class="retro-inline-image"
             >
@@ -182,15 +182,15 @@
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/availability/"
+        href="../availability/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link retro-nav-button"
-        href="/using-calendar-events/"
-        data-target="/using-calendar-events/"
+        href="../using-calendar-events/"
+        data-target="../using-calendar-events/"
       >
         Next Level
       </a>

@@ -11,7 +11,7 @@
     <div class="retro-stepper" data-stepper>
 
       <div class="retro-step-indicator">
-        Step <span data-step-current>1</span> of <span data-step-total>8</span>
+        Step <span data-step-current>1</span> of <span data-step-total>10</span>
       </div>
 
       <div class="retro-step-stage">
@@ -24,7 +24,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/accessing-your-mentees/open-my-mentees.gif"
+              src="../assets/images/accessing-your-mentees/open-my-mentees.gif"
               alt="Opening My Mentees from Appointment Management"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -54,7 +54,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/accessing-your-mentees/open-mentee-profile.gif"
+              src="../assets/images/accessing-your-mentees/open-mentee-profile.gif"
               alt="Opening a mentee profile by clicking on the mentee name"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -70,7 +70,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/accessing-your-mentees/mentee-description-box.png"
+              src="../assets/images/accessing-your-mentees/mentee-description-box.png"
               alt="Description box shown on the mentee profile"
               class="retro-inline-image"
             >
@@ -91,7 +91,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/accessing-your-mentees/open-form-submission.gif"
+              src="../assets/images/accessing-your-mentees/open-form-submission.gif"
               alt="Opening the full form submission from the mentee profile"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -107,7 +107,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/accessing-your-mentees/accept-or-reject-buttons.gif"
+              src="../assets/images/accessing-your-mentees/accept-or-reject-buttons.gif"
               alt="Accept or reject mentee buttons shown on the top right of the mentee profile"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -141,6 +141,40 @@
         </section>
 
         <section class="retro-panel retro-step-panel" data-step-panel>
+          <h2>How New Mentees Are Added to Your Caseload</h2>
+          <p>
+            There are <strong>two ways</strong> new mentees can be added to your <strong>caseload</strong>.
+          </p>
+
+          <h3>When a Mentee Leaves</h3>
+          <p>
+            If you have already set up your <a href="../availability/"><strong>operating hours</strong></a>, and one of your mentees leaves, their time slot will become available again.
+          </p>
+          <p>
+            For example, if you had a mentee every <strong>Monday from 9:00 to 10:00</strong> and they leave, that <strong>Monday 9:00 to 10:00</strong> slot will become free.
+          </p>
+          <p>
+            If you do not add a <strong>blocker</strong> to that slot, it will remain available in your <a href="../availability/"><strong>operating hours</strong></a>. This means the <strong>Assigning Team</strong> can use it to place a new mentee with you. You do not need to do anything else.
+          </p>
+          <p>
+            If you have any questions, you can log a ticket with the <strong>Assigning Team</strong> using the <a href="../how-to-log-a-support-ticket/"><strong>ticket system</strong></a>.
+          </p>
+        </section>
+
+        <section class="retro-panel retro-step-panel" data-step-panel>
+          <h3>When You Add More Availability</h3>
+          <p>
+            The second way is when your availability changes and you are able to take on more sessions.
+          </p>
+          <p>
+            If this happens, you should add the new time slots to your <a href="../availability/"><strong>operating hours</strong></a>. This tells the system that you now have more <strong>unfilled availability</strong>.
+          </p>
+          <p>
+            Once those extra slots have been added, they will appear in the assigning system and the <strong>Assigning Team</strong> will be able to place new mentees into them.
+          </p>
+        </section>
+
+        <section class="retro-panel retro-step-panel" data-step-panel>
           <h2>Off-Boarding a Mentee</h2>
           <p>
             If a mentee is leaving the service, you can off-board them from their profile.
@@ -158,7 +192,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/accessing-your-sessions/off-board-a-mentee.gif"
+              src="../assets/images/accessing-your-sessions/off-board-a-mentee.gif"
               alt="Off-boarding a mentee from their profile"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -172,7 +206,7 @@
             As part of the data transfer from Google Workspace to Salesforce, there could be some discrepancies, so please check your mentee list carefully.
           </p>
           <p>
-            If you have mentees that are no longer with you, please <a href="#" data-go-to-step="6"><strong>off-board</strong></a> them.
+            If you have mentees that are no longer with you, please <a href="#" data-go-to-step="9"><strong>off-board</strong></a> them.
           </p>
           <p>
             If you have new mentees that should be on your mentee list but are not, please contact <strong>Assigning</strong> at the address below.
@@ -216,14 +250,14 @@
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/finding-your-mentees-and-sessions/"
+        href="../finding-your-mentees-and-sessions/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link"
-        href="/accessing-your-sessions/"
+        href="../accessing-your-sessions/"
       >
         Next Section
       </a>

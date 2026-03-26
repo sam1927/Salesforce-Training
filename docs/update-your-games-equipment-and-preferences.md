@@ -31,7 +31,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/update-games-equipment-preferences/open-update-preferences-form.gif"
+              src="../assets/images/update-games-equipment-preferences/open-update-preferences-form.gif"
               alt="Option 1 for opening Update Preferences"
               class="retro-inline-image"
             >
@@ -46,7 +46,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/update-games-equipment-preferences/update-game-selection.gif"
+              src="../assets/images/update-games-equipment-preferences/update-game-selection.gif"
               alt="Option 2 for opening Update Preferences"
               class="retro-inline-image"
             >
@@ -65,7 +65,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/update-games-equipment-preferences/flow.png"
+              src="../assets/images/update-games-equipment-preferences/flow.png"
               alt="Salesforce flow example"
               class="retro-inline-image"
             >
@@ -179,7 +179,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/update-games-equipment-preferences/update-equipment-selection.gif"
+              src="../assets/images/update-games-equipment-preferences/update-equipment-selection.gif"
               alt="Click Finish after updating your preferences"
               class="retro-inline-image"
             >
@@ -235,19 +235,18 @@
     </div>
 
     <div
-      class="retro-content-footer"
-      style="display: flex; justify-content: center; align-items: stretch; gap: 1rem; flex-wrap: wrap;"
+      class="retro-content-footer retro-section-nav"
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/what-to-do-first/"
+        href="../what-to-do-first/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link retro-nav-button"
-        href="/availability/"
+        href="../availability/"
       >
         Next Section
       </a>

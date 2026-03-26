@@ -69,14 +69,14 @@
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/wrap-up-a-session/"
+        href="../wrap-up-a-session/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link"
-        href="/accessing-your-mentees/"
+        href="../accessing-your-mentees/"
       >
         Next Section
       </a>

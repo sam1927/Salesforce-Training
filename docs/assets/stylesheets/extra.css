@@ -1,0 +1,674 @@
+/* =========================================================
+   UI POLISH — extra.css
+   Layered on top of retro-home.css and but-why.css.
+   ========================================================= */
+
+
+/* =========================================================
+   SECTION SEPARATION
+   ========================================================= */
+
+.retro-content-page h2 {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--retro-inner-border);
+}
+
+.retro-content-page h1 + h2 {
+  margin-top: 1.25rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+.retro-content-page h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.retro-content-page p {
+  margin-bottom: 1rem;
+}
+
+.retro-content-page ul,
+.retro-content-page ol {
+  margin-bottom: 1.25rem;
+}
+
+.retro-content-page .retro-panel,
+.retro-content-page table {
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.retro-content-page .retro-content-footer {
+  margin-top: 2rem;
+}
+
+
+/* =========================================================
+   CODE / INSTRUCTION BLOCK CLARITY
+   ========================================================= */
+
+.retro-content-page code,
+#retro-homepage code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9em;
+  padding: 0.15em 0.45em;
+  background: var(--retro-surface-2);
+  border: 1px solid var(--retro-inner-border);
+  color: var(--retro-accent-soft);
+  border-radius: 0;
+}
+
+.retro-content-page pre,
+#retro-homepage pre {
+  background: var(--retro-surface-2);
+  border: 1px solid var(--retro-border-soft);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  max-width: 100%;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.retro-content-page pre code,
+#retro-homepage pre code {
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--retro-text);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+html.retro-a11y-active .retro-content-page code,
+html.retro-a11y-active #retro-homepage code {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #1a1a1a;
+}
+
+html.retro-a11y-active .retro-content-page pre,
+html.retro-a11y-active #retro-homepage pre {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   INTERACTIVE LINKS
+   ========================================================= */
+
+.retro-content-page a:not(.retro-button):not(.retro-nav-button):not(.retro-section-nav__link) {
+  text-decoration: underline;
+  text-decoration-color: var(--retro-accent-border-soft);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition:
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
+}
+
+.retro-content-page a:not(.retro-button):not(.retro-nav-button):not(.retro-section-nav__link):hover,
+.retro-content-page a:not(.retro-button):not(.retro-nav-button):not(.retro-section-nav__link):focus {
+  text-decoration-color: var(--retro-accent);
+}
+
+html.retro-a11y-active .retro-content-page a:not(.retro-button):not(.retro-nav-button):not(.retro-section-nav__link) {
+  text-decoration-color: rgba(0, 0, 0, 0.3);
+}
+
+html.retro-a11y-active .retro-content-page a:not(.retro-button):not(.retro-nav-button):not(.retro-section-nav__link):hover,
+html.retro-a11y-active .retro-content-page a:not(.retro-button):not(.retro-nav-button):not(.retro-section-nav__link):focus {
+  text-decoration-color: rgba(0, 0, 0, 0.6);
+}
+
+
+/* =========================================================
+   SCROLL EXPERIENCE
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+  .retro-content-page h1[id],
+  .retro-content-page h2[id],
+  .retro-content-page h3[id],
+  .retro-content-page h4[id] {
+    scroll-margin-top: 64px;
+  }
+}
+
+@media (min-width: 992px) {
+  .retro-content-page h1[id],
+  .retro-content-page h2[id],
+  .retro-content-page h3[id],
+  .retro-content-page h4[id] {
+    scroll-margin-top: 24px;
+  }
+}
+
+
+/* =========================================================
+   TABLE OVERFLOW
+   ========================================================= */
+
+.retro-content-page table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* =========================================================
+   HEADING SCALE SYSTEM
+   Fill in the gaps left by retro-home.css so every
+   heading level has a clear, proportional size at each
+   breakpoint. Values here override the scattered sizes
+   in retro-home.css by loading later in the cascade.
+
+   Desktop:  h1 3.2rem  h2 1.85rem  h3 1.3rem
+   Tablet:   h1 2.4rem  h2 1.5rem   h3 1.2rem
+   Mobile:   h1 2rem    h2 1.35rem  h3 1.12rem
+   Small:    h1 1.65rem h2 1.2rem   h3 1.05rem
+   ========================================================= */
+
+.retro-content-page h3 {
+  font-size: 1.3rem;
+}
+
+@media (max-width: 991px) {
+  .retro-content-page h1 {
+    font-size: 2.4rem;
+  }
+
+  .retro-content-page h2 {
+    font-size: 1.5rem;
+  }
+
+  .retro-content-page h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .retro-content-page h1 {
+    font-size: 2rem;
+  }
+
+  .retro-content-page h2 {
+    font-size: 1.35rem;
+  }
+
+  .retro-content-page h3 {
+    font-size: 1.12rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .retro-content-page h1 {
+    font-size: 1.65rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+
+  .retro-content-page h2 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .retro-content-page h3 {
+    font-size: 1.05rem;
+  }
+}
+
+
+/* =========================================================
+   MOBILE LAYOUT — SPACING AND RHYTHM
+   Scale down section gaps, panels, footers, and component
+   padding so mobile feels intentional, not squeezed.
+   ========================================================= */
+
+/* Tablet */
+@media (max-width: 991px) {
+  .retro-content-page h2 {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+  }
+
+  .retro-content-page .retro-content-footer {
+    margin-top: 1.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .retro-content-page h2 {
+    margin-top: 1.75rem;
+    padding-top: 1rem;
+  }
+
+  .retro-content-page h3 {
+    margin-top: 1.25rem;
+  }
+
+  .retro-content-page .retro-panel {
+    padding: 14px;
+    margin-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .retro-content-page .retro-content-footer {
+    margin-top: 1.25rem;
+  }
+
+  .retro-content-page pre,
+  #retro-homepage pre {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  /* Flip card faces: tighter padding */
+  .retro-nav-tile__face {
+    padding: 1rem;
+    min-height: 240px;
+  }
+
+  .retro-flip-card__face {
+    padding: 1.1rem;
+  }
+
+  .retro-flip-card__inner {
+    min-height: 360px;
+  }
+
+  /* Carousel: don't increase min-height on mobile */
+  .retro-why-carousel__viewport {
+    min-height: 220px;
+  }
+
+  .retro-why-slide .retro-panel {
+    min-height: 220px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .retro-content-page h2 {
+    margin-top: 1.5rem;
+    padding-top: 0.75rem;
+  }
+
+  .retro-content-page h3 {
+    margin-top: 1rem;
+  }
+
+  .retro-content-page .retro-panel {
+    padding: 12px;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .retro-content-page .retro-content-footer {
+    margin-top: 1rem;
+  }
+
+  .retro-content-page p {
+    margin-bottom: 0.75rem;
+  }
+
+  .retro-content-page ul,
+  .retro-content-page ol {
+    margin-bottom: 1rem;
+    padding-left: 18px;
+  }
+
+  /* Flip cards: allow narrower than 340px */
+  .retro-flip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .retro-flip-card__inner {
+    min-height: 320px;
+  }
+
+  .retro-flip-card__face {
+    padding: 1rem;
+  }
+
+  .retro-nav-tile__face {
+    padding: 0.9rem;
+    min-height: 200px;
+  }
+
+  .retro-nav-tile__front h3 {
+    font-size: 1.15rem;
+  }
+}
+
+
+/* =========================================================
+   TOUCH-TARGET POLISH
+   ========================================================= */
+
+/* Buttons: active / pressed state */
+#retro-homepage .retro-button:active,
+.retro-content-page .retro-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 4px var(--retro-accent-glow-soft);
+}
+
+/* Buttons: visible focus ring for keyboard */
+#retro-homepage .retro-button:focus-visible,
+.retro-content-page .retro-button:focus-visible {
+  outline: 2px solid var(--retro-accent);
+  outline-offset: 3px;
+}
+
+/* Skip intro button: focus ring */
+#retro-homepage .retro-skip-intro:focus-visible {
+  outline: 2px solid var(--retro-accent);
+  outline-offset: 3px;
+}
+
+/* Mobile: increase nav touch targets */
+@media (max-width: 991.98px) {
+  .navbar-nav .nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar .dropdown-item {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* Copy button: larger tap area on mobile */
+@media (max-width: 700px) {
+  .retro-copy-button {
+    min-height: 44px;
+    padding: 0.55rem 0.9rem;
+  }
+}
+
+
+/* =========================================================
+   CARD AND PANEL CONSISTENCY
+   ========================================================= */
+
+/* Image panels: match base panel border style */
+.retro-image-panel {
+  border-color: var(--retro-border-soft);
+}
+
+/* Copy items: match base panel background */
+.retro-copy-item {
+  background: var(--retro-surface-2);
+}
+
+/* Status key items: match surface colour */
+.retro-status-key__item {
+  background: var(--retro-surface-2);
+}
+
+
+/* =========================================================
+   NAVIGATION REFINEMENT
+   ========================================================= */
+
+/* Dropdown item padding — consistent base */
+.navbar .dropdown-item {
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+/* Active dropdown item — stronger left border for scannability */
+.navbar .dropdown-item.active {
+  border-left-width: 3px;
+  border-left-style: solid;
+}
+
+/* Styled sidebar scrollbar (desktop) */
+@media (min-width: 992px) {
+  .navbar.fixed-top > .container {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(95, 132, 184, 0.25) transparent;
+  }
+
+  .navbar.fixed-top > .container::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .navbar.fixed-top > .container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .navbar.fixed-top > .container::-webkit-scrollbar-thumb {
+    background: rgba(95, 132, 184, 0.25);
+    border-radius: 3px;
+  }
+
+  .navbar.fixed-top > .container::-webkit-scrollbar-thumb:hover {
+    background: rgba(95, 132, 184, 0.45);
+  }
+
+  /* Desktop sidebar: tighter group header spacing */
+  .navbar-nav > .nav-item.dropdown > .dropdown-toggle {
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.3rem !important;
+  }
+
+  /* Subtle fade-in for dropdown menus */
+  .navbar .nav-item.dropdown.show > .dropdown-menu {
+    animation: navDropdownReveal 0.15s ease-out;
+  }
+
+  @keyframes navDropdownReveal {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Mobile nav refinements */
+@media (max-width: 991.98px) {
+  .navbar .dropdown-item {
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .navbar .dropdown-item.active {
+    background: rgba(95, 132, 184, 0.18) !important;
+  }
+}
+
+/* Long nav labels: prevent awkward mid-word breaks */
+.navbar-nav .nav-link,
+.navbar .dropdown-item {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+
+/* =========================================================
+   MOTION CONSISTENCY
+   Standardise timing to 0.15s for interactive elements.
+   Button base transitions in retro-home.css use 0.18s;
+   override here for consistency.
+   ========================================================= */
+
+#retro-homepage .retro-button,
+.retro-content-page .retro-button {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.retro-content-page .retro-panel,
+.retro-content-page .retro-copy-item,
+.retro-image-panel {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.navbar .dropdown-item {
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.navbar-nav > .nav-item > .nav-link {
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+/* =========================================================
+   REDUCED-MOTION AND ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Page and content entrance animations */
+  #retro-homepage,
+  .retro-content-page,
+  .retro-content-page .retro-main-content {
+    animation: none !important;
+  }
+
+  /* Frame overlay animations */
+  #retro-homepage.theme-level-home::after,
+  .retro-content-page::after {
+    animation: none !important;
+  }
+
+  /* Button pulse */
+  .retro-button-pulse {
+    animation: none !important;
+  }
+
+  /* Logo glitch */
+  .retro-logo-glitch::before,
+  .retro-logo-glitch::after,
+  .retro-logo-glitch.is-glitching::before,
+  .retro-logo-glitch.is-glitching::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  /* Kicker/theme/toggle shine effects */
+  .retro-content-kicker:hover::after,
+  .retro-theme-btn:hover::after,
+  .retro-navbar-toggle:hover::after {
+    animation: none !important;
+  }
+
+  /* Skip intro fade-in: show immediately */
+  #retro-homepage .retro-skip-intro {
+    animation: none !important;
+    opacity: 0.55 !important;
+  }
+
+  /* Dropdown reveal */
+  .navbar .nav-item.dropdown.show > .dropdown-menu {
+    animation: none !important;
+  }
+
+  /* Flip card / nav tile: instant flip */
+  .retro-nav-tile__inner,
+  .retro-flip-card__inner {
+    transition-duration: 0.01s !important;
+  }
+
+  .retro-nav-tile.is-animating-a,
+  .retro-nav-tile.is-animating-b,
+  .retro-nav-tile.is-animating-c,
+  .retro-flip-card.is-animating-a,
+  .retro-flip-card.is-animating-b,
+  .retro-flip-card.is-animating-c {
+    animation: none !important;
+  }
+
+  /* Stepper slide animation */
+  .retro-step-panel.is-active {
+    animation: none !important;
+  }
+
+  /* WIP banner pulse */
+  .retro-wip-banner__label {
+    animation: none !important;
+  }
+
+  .retro-wip-banner__bar {
+    animation: none !important;
+    opacity: 0.7 !important;
+    transform: none !important;
+  }
+
+  /* Important heading glow */
+  .retro-important-heading {
+    animation: none !important;
+  }
+
+  /* Nav boot/power-down */
+  .retro-nav-booting .navbar-nav .nav-link,
+  .retro-nav-booting .navbar-nav .dropdown-item,
+  .retro-nav-booting .navbar-brand,
+  .retro-nav-powering-down .navbar-nav .nav-link,
+  .retro-nav-powering-down .navbar-nav .dropdown-item,
+  .retro-nav-powering-down .navbar-brand {
+    animation: none !important;
+  }
+
+  /* Transition overlay effects */
+  .retro-reveal__flash,
+  .retro-reveal__line,
+  .retro-reveal__text {
+    animation: none !important;
+  }
+
+  .retro-transition__scanlines,
+  .retro-transition__flash,
+  .retro-transition__grid,
+  .retro-transition__beam,
+  .retro-transition__stars,
+  .retro-transition__terminal {
+    animation: none !important;
+  }
+
+  /* Copy sparkle */
+  .retro-copy-sparkle {
+    animation: none !important;
+  }
+
+  /* Smooth scrolling: off */
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  /* Carousel viewport transition */
+  .retro-why-carousel__viewport,
+  .retro-step-stage {
+    transition: none !important;
+  }
+
+  /* All remaining transitions: flatten to near-instant */
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01s !important;
+  }
+}
+
+/* Keyboard focus: global fallback for anything interactive */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--retro-accent);
+  outline-offset: 2px;
+}

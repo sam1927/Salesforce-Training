@@ -50,7 +50,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/recording-an-absence/log-holiday-absence.gif"
+              src="../assets/images/recording-an-absence/log-holiday-absence.gif"
               alt="Adding a new absence in the system"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -83,7 +83,7 @@
 
           <div class="retro-image-panel">
             <img
-              src="/assets/images/recording-an-absence/log-illness-absence.gif"
+              src="../assets/images/recording-an-absence/log-illness-absence.gif"
               alt="Selecting and pinning the My Absences view"
               class="retro-inline-image retro-lightbox-target"
               data-lightbox
@@ -121,15 +121,15 @@
     >
       <a
         class="retro-button retro-section-nav__link"
-        href="/accessing-your-sessions/"
+        href="../accessing-your-sessions/"
       >
-        Back
+        Previous Page
       </a>
 
       <a
         class="retro-button retro-section-nav__link retro-nav-button"
-        href="/my-account/"
-        data-target="/my-account/"
+        href="../my-account/"
+        data-target="../my-account/"
       >
         Next Level
       </a>
